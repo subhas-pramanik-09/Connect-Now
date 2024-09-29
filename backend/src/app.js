@@ -1,3 +1,6 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import express from "express";
 import { createServer } from "node:http";
 
@@ -19,14 +22,13 @@ app.use(express.json({ limit: "40kb" }));
 app.use(express.urlencoded({ limit: "40kb", extended: true }));
 
 app.use("/api/v1/users", userRoutes);
+const dburl = process.env.ATLASDB_DB;
 
 const start = async () => {
   app.set("mongo_user");
-  const connectionDb = await mongoose.connect(
-    "mongodb+srv://subhaspramanik820:lwt37fJIbJEvUtWT@cluster0.8pkeu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-  );
+  const connectionDb = await mongoose.connect(dburl);
 
-  console.log(`MONGO Connected DB HOst: ${connectionDb.connection.host}`);
+  console.log(`MONGO Connected DB Host: ${connectionDb.connection.host}`);
   server.listen(app.get("port"), () => {
     console.log("LISTENIN ON PORT 8000");
   });
