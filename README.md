@@ -1,6 +1,6 @@
 # A Full Stack real time video conferencing website using WebRTC and Socket.io (For real time streaming).
 
-This project created by Subhas Pramanik.
+This project created by Subhas Pramanik
 
 ## Installation 
 
